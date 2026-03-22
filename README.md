@@ -1,0 +1,1 @@
+# stock_mngmt_mvp1
