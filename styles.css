@@ -1,0 +1,45 @@
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --accent: #111827;
+  --danger: #b91c1c;
+  --warn-bg: #fef3c7;
+  --warn-text: #92400e;
+  --ok-bg: #dcfce7;
+  --ok-text: #166534;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--text); }
+.app-shell { max-width: 1280px; margin: 0 auto; padding: 20px; }
+.topbar, .section-head, .form-actions, .filters { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.topbar h1 { margin:0; }
+.topbar p { margin:6px 0 0; color:var(--muted); }
+.card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 3px 10px rgba(0,0,0,0.04); }
+.stats-grid, .main-grid { display:grid; gap:16px; }
+.stats-grid { grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); margin:18px 0; }
+.main-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+.full-width { grid-column:1 / -1; }
+.stat-card span { color:var(--muted); display:block; margin-bottom:8px; }
+.stat-card strong { font-size:2rem; }
+.form-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; }
+label { display:flex; flex-direction:column; gap:6px; font-weight:600; }
+input, select, textarea, button { font:inherit; }
+input, select, textarea { padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:white; }
+button, .import-label { border:0; border-radius:10px; padding:10px 14px; background:var(--accent); color:white; cursor:pointer; text-decoration:none; }
+.secondary { background:#e5e7eb; color:#111827; }
+.import-label { display:inline-flex; align-items:center; }
+.full-span { grid-column:1 / -1; }
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+th, td { text-align:left; padding:12px 10px; border-bottom:1px solid var(--line); }
+th { color:var(--muted); font-size:0.92rem; }
+.badge { display:inline-block; padding:6px 10px; border-radius:999px; font-size:0.85rem; font-weight:700; }
+.badge.ok { background:var(--ok-bg); color:var(--ok-text); }
+.badge.low { background:var(--warn-bg); color:var(--warn-text); }
+.link-btn, .danger-btn { border:0; background:transparent; padding:0; cursor:pointer; font-weight:700; }
+.link-btn { color:#1d4ed8; }
+.danger-btn { color:var(--danger); }
+@media (max-width: 860px) { .main-grid, .form-grid { grid-template-columns:1fr; } }

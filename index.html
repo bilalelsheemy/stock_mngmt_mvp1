@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sara Bags</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>Sara Bags</h1>
+        <p>Simple inventory app for managing bag stock and stock movements</p>
+      </div>
+      <div class="topbar-actions">
+        <button id="seedDataBtn" class="secondary">Load demo data</button>
+        <button id="exportBtn" class="secondary">Export JSON</button>
+        <label class="import-label">
+          Import JSON
+          <input id="importInput" type="file" accept="application/json" hidden />
+        </label>
+      </div>
+    </header>
+
+    <section class="stats-grid">
+      <div class="card stat-card">
+        <span>Total Items</span>
+        <strong id="totalItems">0</strong>
+      </div>
+      <div class="card stat-card">
+        <span>Total Pieces</span>
+        <strong id="totalPieces">0</strong>
+      </div>
+      <div class="card stat-card">
+        <span>Low Stock Items</span>
+        <strong id="lowStockCount">0</strong>
+      </div>
+    </section>
+
+    <main class="main-grid">
+      <section class="card">
+        <div class="section-head">
+          <h2>Add / Edit Bag</h2>
+        </div>
+
+        <form id="bagForm" class="form-grid">
+          <input type="hidden" id="bagId" />
+          <label>
+            Brand
+            <input id="brand" required placeholder="e.g. Michael Kors" />
+          </label>
+          <label>
+            Model
+            <input id="modelName" required placeholder="e.g. Jet Set Tote" />
+          </label>
+          <label>
+            Color
+            <input id="color" placeholder="e.g. Black" />
+          </label>
+          <label>
+            Opening Stock
+            <input id="openingStock" type="number" min="0" value="0" />
+          </label>
+          <label>
+            Minimum Stock
+            <input id="minimumStock" type="number" min="0" value="0" />
+          </label>
+          <label class="full-span">
+            Notes
+            <textarea id="notes" rows="3" placeholder="Optional notes"></textarea>
+          </label>
+          <div class="form-actions full-span">
+            <button type="submit">Save Bag</button>
+            <button type="button" id="resetFormBtn" class="secondary">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>Stock Movement</h2>
+        </div>
+
+        <form id="movementForm" class="form-grid">
+          <label class="full-span">
+            Bag
+            <select id="movementBagId" required></select>
+          </label>
+          <label>
+            Type
+            <select id="movementType">
+              <option value="IN">IN</option>
+              <option value="OUT">OUT</option>
+            </select>
+          </label>
+          <label>
+            Quantity
+            <input id="movementQty" type="number" min="1" value="1" required />
+          </label>
+          <label>
+            Date
+            <input id="movementDate" type="date" required />
+          </label>
+          <label class="full-span">
+            Note
+            <input id="movementNote" placeholder="e.g. Sold to customer" />
+          </label>
+          <div class="form-actions full-span">
+            <button type="submit">Add Movement</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card full-width">
+        <div class="section-head">
+          <h2>Inventory</h2>
+          <div class="filters">
+            <input id="searchInput" placeholder="Search by brand, model, or color" />
+            <select id="brandFilter">
+              <option value="ALL">All brands</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Qty</th>
+                <th>Min</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card full-width">
+        <div class="section-head">
+          <h2>Movement History</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Bag</th>
+                <th>Type</th>
+                <th>Qty</th>
+                <th>Note</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
